@@ -1,0 +1,13 @@
+{
+    "name"        : "bernard/chute",
+    "description" : "MapReduce framework",
+    "license"     : "MIT",
+
+    "autoload" : {
+        "psr-0" : { "Chute\\" : "src" }
+    },
+
+    "require" : {
+        "php" : ">=5.3.3"
+    }
+}

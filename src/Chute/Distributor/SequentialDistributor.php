@@ -3,6 +3,7 @@
 namespace Chute\Distributor;
 
 use Chute\MapReduce;
+use Chute\ResultSet\ArraySet;
 use Traversable;
 
 /**
@@ -29,6 +30,10 @@ class SequentialDistributor extends AbstractDistributor
             }
         }
 
-        return $resultSet;
+        if ($resultSet) {
+            return $resultSet;
+        }
+
+        return new ArraySet;
     }
 }

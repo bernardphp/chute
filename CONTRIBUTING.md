@@ -2,7 +2,7 @@ How to Contribute
 =================
 
 Third party patches is what makes the world go around and we welcome
-every single one of them. But remember to use theese guidelines.
+every single one of them. But remember to use these guidelines.
 
 
 Tests

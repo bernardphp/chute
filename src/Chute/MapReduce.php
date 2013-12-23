@@ -15,7 +15,7 @@ use Traversable;
  * make sure the least amount of memory is being used. If you have 2.000.000 elements
  * per key it would be overkill to map 2.000.000 and then loop over to reduce.
  *
- * It also contains conveniet methods to do a single map or single reduce. Which is
+ * It also contains convenient methods to do a single map or single reduce. Which is
  * very useful when doing it with a Distributor.
  *
  * @package Chute

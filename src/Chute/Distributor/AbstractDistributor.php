@@ -15,11 +15,6 @@ use Traversable;
 abstract class AbstractDistributor implements \Chute\Distributor
 {
     /**
-     * {@inheritDoc}
-     */
-    abstract public function run(MapReduce $mapReduce, Traversable $iterator);
-
-    /**
      * Will call $mapReduce::run($iterator) for each of the chunks.
      *
      * @param MapReduce   $mapReduce

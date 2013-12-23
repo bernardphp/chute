@@ -27,9 +27,9 @@ Putting it all together with a ``CallableMapper`` and ``CallableReducer`` we get
     use Chute\Reducer\CallableReducer;
 
     $mapper = new CallableMapper(function ($item) {
-      $key = $item % 2 === 0 ? 'even' : 'not_even';
+      $isEven = $item % 2 === 0;
 
-      return array($key, $item);
+      return [$isEven ? 'even' : 'not_even', $item];
     });
 
     $reducer = new CallableReducer(function ($item, $previous) {
@@ -37,7 +37,7 @@ Putting it all together with a ``CallableMapper`` and ``CallableReducer`` we get
     });
 
     $mapReduce = new MapReduce($mapper, $reducer);
-    $resultSet = $mapReduce->run(new \ArrayIterator(range(1, 4)));
+    $resultSet = $mapReduce->run(new ArrayIterator([1, 2, 3, 4]));
 
 The ``$resultSet`` will now contain two keys. A ``even`` and a ``not_even``. Because the Reducer just added the values
 the result for ``even`` will be ``6`` which is 2 + 4 and the ``not_even`` key will be 4 which is 1 + 3.
@@ -72,7 +72,7 @@ Chute provides a Distributor to do this.
     // it will split the ArrayIterator up into two chunks containing (1, 2) and (4, 5). When each
     // of the chunks have been completed it will merge the two resultsets together.
     $runner = new SequentialDistributor;
-    $runner->run($mapReduce, new ChunkedIterator(new ArrayIterator(array(1, 2, 3, 4)), 2);
+    $runner->run($mapReduce, new ChunkedIterator(new ArrayIterator([1, 2, 3, 4]), 2);
 
 Of course the above example code is very simple as it just chunks up the iterator and runs them in a
 sequential way.

@@ -94,7 +94,7 @@ Credits
 -------
 
 Chute is developed mainly be these wonderful people. Or they have made
-a signifiant contribution.
+a significant contribution.
 
  * `@Fant <https://github.com/Fant>`__
  * `@igorw <https://github.com/igorw>`__

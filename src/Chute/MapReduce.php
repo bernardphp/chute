@@ -9,7 +9,7 @@ use Traversable;
  * MapReduce knows about all the moving parts specific for Reading, Mapping,
  * Reducing and Writing back.
  *
- * It holds all of theese elements as well as the results that is reduced.
+ * It holds all of these elements as well as the results that is reduced.
  *
  * It will reduce as soon as more than 2 of the same keys are known, this is to
  * make sure the least amount of memory is being used. If you have 2.000.000 elements

@@ -8,7 +8,7 @@ namespace Chute;
 interface Reducer
 {
     /**
-     * Takes two items that must be compined to a single item with the EXACT
+     * Takes two items that must be combined to a single item with the EXACT
      * same structure and returned.
      *
      * @param  mixed $item

@@ -58,7 +58,11 @@ class ChunkedIterator extends \IteratorIterator
         $items = array();
         $inner = $this->getInnerIterator();
 
-        for ($i = 0; $i < $this->chunkSize && $inner->valid(); $i++) {
+        for ($i = 0; $i < $this->chunkSize; $i++) {
+            if (!$inner->valid()) {
+                break;
+            }
+
             $items[] = $inner->current();
             $inner->next();
         }

@@ -2,7 +2,7 @@
 
 namespace Chute;
 
-use Iterator;
+use Traversable;
 
 /**
  * Distributor distributes an iterator out onto a different MapReduce.
@@ -14,8 +14,8 @@ interface Distributor
 {
     /**
      * @param  MapReduce $mapReduce
-     * @param  Iterator $iterator
+     * @param  Traversable $iterator
      * @return ResultSet
      */
-    public function run(MapReduce $mapReduce, Iterator $iterator);
+    public function run(MapReduce $mapReduce, Traversable $iterator);
 }

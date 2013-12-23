@@ -3,7 +3,7 @@
 namespace Chute;
 
 use Chute\ResultSet\ArraySet;
-use Iterator;
+use Traversable;
 
 /**
  * MapReduce knows about all the moving parts specific for Reading, Mapping,
@@ -36,11 +36,11 @@ class MapReduce implements Mapper, Reducer
     }
 
     /**
-     * @param  Iterator       $iterator
+     * @param  Traversable    $iterator
      * @param  ResultSet|null $resultSet
      * @return ResultSet
      */
-    public function run(Iterator $iterator, ResultSet $resultSet = null)
+    public function run(Traversable $iterator, ResultSet $resultSet = null)
     {
         if (!$resultSet) {
             $resultSet = new ArraySet;

@@ -4,7 +4,7 @@ namespace Chute\Distributor;
 
 use Chute\ResultSet;
 use Chute\MapReduce;
-use Iterator;
+use Traversable;
 
 /**
  * Abstract class that helps with merging multiple results sets
@@ -17,15 +17,15 @@ abstract class AbstractDistributor implements \Chute\Distributor
     /**
      * {@inheritDoc}
      */
-    abstract public function run(MapReduce $mapReduce, Iterator $iterator);
+    abstract public function run(MapReduce $mapReduce, Traversable $iterator);
 
     /**
      * Will call $mapReduce::run($iterator) for each of the chunks.
      *
-     * @param MapReduce $mapReduce
-     * @param Iterator  $iterator
+     * @param MapReduce   $mapReduce
+     * @param Traversable $iterator
      */
-    protected function doRun(MapReduce $mapReduce, Iterator $iterator)
+    protected function doRun(MapReduce $mapReduce, Traversable $iterator)
     {
         return $mapReduce->run($iterator);
     }

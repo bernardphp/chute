@@ -1,8 +1,8 @@
 Chute
 =====
 
-Chute is a MapReduce Framework for PHP. It enables doing map reduce over iterators and pushes the decision
-for Hadoop out into the future.
+Chute is a MapReduce Framework for PHP. It enables doing map reduce over iterators (``Traversable``) and pushes
+the decision for Hadoop out into the future.
 
 Getting Started
 ---------------

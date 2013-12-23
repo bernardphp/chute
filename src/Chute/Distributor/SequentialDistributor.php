@@ -3,7 +3,7 @@
 namespace Chute\Distributor;
 
 use Chute\MapReduce;
-use Iterator;
+use Traversable;
 
 /**
  * Distributor used for testing only. It Runs every "chunk" in iteration.
@@ -15,7 +15,7 @@ class SequentialDistributor extends AbstractDistributor
     /**
      * {@inheritDoc}
      */
-    public function run(MapReduce $mapReduce, Iterator $iterator)
+    public function run(MapReduce $mapReduce, Traversable $iterator)
     {
         foreach ($iterator as $batch) {
             $resultSets[] = $this->doRun($mapReduce, $batch);

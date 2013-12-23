@@ -19,6 +19,8 @@ abstract class AbstractDistributor implements \Chute\Distributor
      *
      * @param MapReduce   $mapReduce
      * @param Traversable $iterator
+     *
+     * @return ResultSet
      */
     protected function doRun(MapReduce $mapReduce, Traversable $iterator)
     {

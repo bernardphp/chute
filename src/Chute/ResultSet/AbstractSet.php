@@ -8,7 +8,7 @@ use Chute\Util\Generator;
 
 /**
  * Base for all ResultsSet, if no key is given a uuid will
- * be generated. The key is used to indentify a specific run. If it collides
+ * be generated. The key is used to identify a specific run. If it collides
  * it can mean results will be mangled.
  *
  * @package Chute

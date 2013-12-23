@@ -6,7 +6,7 @@ use Traversable;
 
 /**
  * Distributor distributes an iterator out onto a different MapReduce.
- * A Dristributor is used to have forking or threading (async map reduce).
+ * A Distributor is used to have forking or threading (async map reduce).
  *
  * @package Chute
  */

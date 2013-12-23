@@ -25,23 +25,22 @@
 namespace Chute\Util;
 
 use ArrayIterator;
+use Traversable;
 
 /**
- * Pulls out chunks from an inner iterator and yields the chunks as arrays
+ * Pulls out chunks from an inner iterator and yields the chunks as instances
+ * of ArrayIterator
  */
 class ChunkedIterator extends \IteratorIterator
 {
-    /** @var int Size of each chunk */
     protected $chunkSize;
-
-    /** @var array Current chunk */
     protected $chunk;
 
     /**
-     * @param \Traversable $iterator  Traversable iterator
-     * @param int          $chunkSize Size to make each chunk
+     * @param Traversable $iterator
+     * @param integer     $chunkSize
      */
-    public function __construct(\Traversable $iterator, $chunkSize)
+    public function __construct(Traversable $iterator, $chunkSize)
     {
         parent::__construct($iterator);
 
@@ -50,6 +49,7 @@ class ChunkedIterator extends \IteratorIterator
 
     public function rewind()
     {
+        $this->getInnerIterator()->rewind();
         $this->next();
     }
 

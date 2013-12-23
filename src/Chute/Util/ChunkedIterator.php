@@ -35,6 +35,7 @@ class ChunkedIterator extends \IteratorIterator
 {
     protected $chunkSize;
     protected $chunk;
+    protected $key;
 
     /**
      * @param Traversable $iterator
@@ -49,8 +50,16 @@ class ChunkedIterator extends \IteratorIterator
 
     public function rewind()
     {
+        // reset $key
+        $this->key = -1;
+
         $this->getInnerIterator()->rewind();
         $this->next();
+    }
+
+    public function key()
+    {
+        return $this->key;
     }
 
     public function next()
@@ -68,6 +77,7 @@ class ChunkedIterator extends \IteratorIterator
         }
 
         $this->chunk = new ArrayIterator($items);
+        $this->key += 1;
     }
 
     public function current()

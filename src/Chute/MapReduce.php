@@ -71,7 +71,7 @@ class MapReduce implements Mapper, Reducer
 
     /**
      * Maps a single $item and if a previous item with the same key have
-     * been mapped thoose two will be reduced together to a single value.
+     * been mapped those two will be reduced together to a single value.
      * This value is then updated in the result set.
      *
      * @param ResultSet $resultSet

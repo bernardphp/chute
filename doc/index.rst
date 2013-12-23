@@ -80,8 +80,7 @@ sequential way.
 Frequently Asked Questions
 --------------------------
 
-Collection fo Tips, Tricks or other question often asked when using
-this library.
+Collection of Tips, Tricks and other question often asked when using this library.
 
 Can values be ignored?
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -89,13 +88,13 @@ Can values be ignored?
 Yes. When a ``Mapper::map()`` returns ``null``. The value will not be reduced but ignored and will not be
 added to the result set.
 
-Is it a good idea? Proberly not, but i needed it.
+Is it a good idea? Probably not, but i needed it.
 
 Credits
 -------
 
-Chute is developed mainly be theese wonderful people. Or they have made
-an signifiant contributing.
+Chute is developed mainly be these wonderful people. Or they have made
+a signifiant contribution.
 
  * `@Fant <https://github.com/Fant>`__
  * `@igorw <https://github.com/igorw>`__

@@ -1,6 +1,7 @@
 {
     "name"        : "bernard/chute",
     "description" : "MapReduce framework",
+    "keywords"    : ["MapReduce", "data-processing", "bernard"],
     "license"     : "MIT",
 
     "autoload" : {
@@ -9,5 +10,11 @@
 
     "require" : {
         "php" : ">=5.3.3"
+    },
+
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "1.0.x-dev"
+        }
     }
 }

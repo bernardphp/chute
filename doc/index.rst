@@ -55,6 +55,20 @@ In fact Chute does provide a ``RedisSet`` which uses a redis hash for the result
 multiple ResultSet's are used, every ResultSet have a ``$key`` (if they extend ``AbstractSet``) which is a
 Universally Unique Identifier (UUID).
 
+The ResultSet used is controlled by a ``ResultSetFactory`` implementation. This is the third optional argument to the
+``MapReduce`` constructor. As it is optional it defaults to ``ArrayFactory`` which creates ``ArraySet`` instances.
+
+.. code-block:: php
+
+    <?php
+
+    use Chute\ResultSet\RedisFactory;
+
+    $mapReduce = new MapReduce($mapper, $reducer, new RedisFactory);
+
+    // $resultSet will now be a `Chute\ResultSet\RedisSet` instance.
+    $resultSet = $mapReduce->run(new ArrayIterator(array()));
+
 Distributors
 ~~~~~~~~~~~~
 

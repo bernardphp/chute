@@ -9,6 +9,10 @@ class RedisSetTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        if (!extension_loaded('redis')) {
+            $this->markTestSkipped('Missing "phpredis" extension.');
+        }
+
         $this->redis = $this->getMock('Redis');
         $this->set = new RedisSet($this->redis);
     }

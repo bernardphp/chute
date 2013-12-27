@@ -52,8 +52,8 @@ a simple wrapper over an ``array``. But to limit the use of memory this could be
 support.
 
 In fact Chute does provide a ``RedisSet`` which uses a redis hash for the results. In order to hinder collisions if
-multiple ResultSet's are used, every ResultSet have a ``$key`` (if they extend ``AbstractSet``) which is a
-Universally Unique Identifier (UUID).
+multiple ResultSet's are used, ``RedisSet`` have a ``$key`` which is a Universally Unique Identifier (UUID) that is
+used to isolate its result and being able to retrieve earlier results.
 
 The ResultSet used is controlled by a ``ResultSetFactory`` implementation. This is the third optional argument to the
 ``MapReduce`` constructor. As it is optional it defaults to ``ArrayFactory`` which creates ``ArraySet`` instances.

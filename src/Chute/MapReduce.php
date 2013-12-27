@@ -2,7 +2,7 @@
 
 namespace Chute;
 
-use Chute\ResultSet\ArraySet;
+use Chute\ResultSet\ArrayFactory;
 use Traversable;
 
 /**
@@ -24,27 +24,26 @@ class MapReduce implements Mapper, Reducer
 {
     protected $mapper;
     protected $reducer;
+    protected $factory;
 
     /**
      * @param Mapper  $mapper
      * @param Reducer $reducer
      */
-    public function __construct(Mapper $mapper, Reducer $reducer)
+    public function __construct(Mapper $mapper, Reducer $reducer, ResultSetFactory $factory = null)
     {
         $this->mapper = $mapper;
         $this->reducer = $reducer;
+        $this->factory = $factory ?: new ArrayFactory;
     }
 
     /**
      * @param  Traversable    $iterator
-     * @param  ResultSet|null $resultSet
      * @return ResultSet
      */
-    public function run(Traversable $iterator, ResultSet $resultSet = null)
+    public function run(Traversable $iterator)
     {
-        if (!$resultSet) {
-            $resultSet = new ArraySet;
-        }
+        $resultSet = $this->factory->create();
 
         foreach ($iterator as $item) {
             $this->tick($resultSet, $item);

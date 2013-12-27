@@ -4,6 +4,7 @@ namespace Chute\Tests;
 
 use Chute\MapReduce;
 use Chute\Tests\Fixtures;
+use ArrayIterator;
 
 class MapReduceTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,7 +26,7 @@ class MapReduceTest extends \PHPUnit_Framework_TestCase
     {
         // It uses addition on all odd and even numbers.
         $mapReduce = new MapReduce($this->mapper, $this->reducer);
-        $resultSet = $mapReduce->run(new \ArrayIterator(array(1, 2, 3, 4)));
+        $resultSet = $mapReduce->run(new ArrayIterator(array(1, 2, 3, 4)));
 
         $this->assertInstanceOf('Chute\ResultSet\ArraySet', $resultSet);
 
@@ -36,14 +37,16 @@ class MapReduceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(6, $resultSet->get('even'));
     }
 
-    public function testResultSetAreInterChangeable()
+    public function testResultSetFactoryCreatesResultSet()
     {
         $resultSet = $this->getMock('Chute\ResultSet');
-        $resultSet->expects($this->any())->method('keys')->will($this->returnValue(array()));
 
-        $mapReduce = new MapReduce($this->mapper, $this->reducer);
+        $factory = $this->getMock('Chute\ResultSetFactory');
+        $factory->expects($this->once())->method('create')->will($this->returnValue($resultSet));
 
-        $this->assertSame($resultSet, $mapReduce->run(new \ArrayIterator(array()), $resultSet));
+        $mapReduce = new MapReduce($this->mapper, $this->reducer, $factory);
+
+        $this->assertSame($resultSet, $mapReduce->run(new ArrayIterator(array())));
     }
 
     public function testMapToNullIgnoresValues()
@@ -55,7 +58,7 @@ class MapReduceTest extends \PHPUnit_Framework_TestCase
         $mapper->expects($this->at(1))->method('map')->with($this->equalTo(2))->will($this->returnValue(null));
 
         $mapReduce = new MapReduce($mapper, $this->reducer);
-        $resultSet = $mapReduce->run(new \ArrayIterator(array(1, 2))); // we just need two values.
+        $resultSet = $mapReduce->run(new ArrayIterator(array(1, 2))); // we just need two values.
 
         $this->assertEquals(array('not_even' => 1), $resultSet->all());
     }

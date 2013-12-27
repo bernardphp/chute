@@ -29,7 +29,7 @@ class RedisSet extends AbstractSet
     public function get($group)
     {
         if ($data = $this->redis->hget($this->key, $group)) {
-            return json_decode($data, true);
+            return unserialize($data);
         }
     }
 
@@ -46,7 +46,7 @@ class RedisSet extends AbstractSet
      */
     public function set($group, $value)
     {
-        $this->redis->hset($this->key, $group, json_encode($value));
+        $this->redis->hset($this->key, $group, serialize($value));
     }
 
     /**
@@ -70,6 +70,11 @@ class RedisSet extends AbstractSet
      */
     public function all()
     {
-        return $this->redis->hgetall($this->key);
+        return array_map('unserialize', $this->redis->hgetall($this->key));
+    }
+
+    public function __toString()
+    {
+        return (string) $this->key;
     }
 }

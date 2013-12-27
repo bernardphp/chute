@@ -4,7 +4,6 @@ namespace Chute\ResultSet;
 
 use Chute\Reducer;
 use Chute\ResultSet;
-use Chute\Util\Generator;
 
 /**
  * Base for all ResultsSet, if no key is given a uuid will
@@ -15,20 +14,6 @@ use Chute\Util\Generator;
  */
 abstract class AbstractSet implements ResultSet
 {
-    protected $key;
-
-    /**
-     * @param mixed|null $key
-     */
-    public function __construct($key = null)
-    {
-        if (!$key) {
-            $key = Generator::generateUuid();
-        }
-
-        $this->key = $key;
-    }
-
     /**
      * {@inheritDoc}
      */

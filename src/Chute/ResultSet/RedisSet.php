@@ -2,6 +2,7 @@
 
 namespace Chute\ResultSet;
 
+use Chute\Util\Generator;
 use Redis;
 
 /**
@@ -18,9 +19,8 @@ class RedisSet extends AbstractSet
      */
     public function __construct(Redis $redis, $key = null)
     {
-        parent::__construct($key);
-
         $this->redis = $redis;
+        $this->key = chute_generate_uuid();
     }
 
     /**

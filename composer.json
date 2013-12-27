@@ -5,7 +5,8 @@
     "license"     : "MIT",
 
     "autoload" : {
-        "psr-0" : { "Chute\\" : "src" }
+        "psr-0" : { "Chute\\" : "src" },
+        "files" : ["src/Chute/functions.php"]
     },
 
     "require" : {

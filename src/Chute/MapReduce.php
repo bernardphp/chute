@@ -49,6 +49,10 @@ class MapReduce implements Mapper, Reducer
         $iterator = new MapperIterator($this->mapper, $iterator);
 
         foreach ($iterator as $item) {
+            if (null === $item) {
+                continue;
+            }
+
             $this->tick($resultSet, $item);
         }
 
@@ -81,14 +85,10 @@ class MapReduce implements Mapper, Reducer
      */
     protected function tick(ResultSet $resultSet, $item)
     {
-        if ($item === null) {
-            return;
-        }
-
         list($key, $value) = $item;
 
         if ($previous = $resultSet->get($key)) {
-            $value = $this->reduce($value, $previous);
+            $value = $this->reducer->reduce($value, $previous);
         }
 
         $resultSet->set($key, $value);

@@ -19,6 +19,8 @@ class MapperIterator extends \IteratorIterator
 
     public function current()
     {
-        return $this->mapper->map(parent::current());
+        $item = parent::current();
+
+        return $this->mapper->map($item);
     }
 }

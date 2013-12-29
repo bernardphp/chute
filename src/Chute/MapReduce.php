@@ -3,6 +3,7 @@
 namespace Chute;
 
 use Chute\ResultSet\ArrayFactory;
+use Chute\Util\MapperIterator;
 use Traversable;
 
 /**
@@ -43,22 +44,13 @@ class MapReduce implements Mapper, Reducer
      */
     public function run(Traversable $iterator)
     {
-        $mapped = false;
-
-        if (PHP_VERSION_ID >= 5500) {
-            // 5.5 comes with a nice feature called Generators that makes it possible
-            // for us to do Just In Time Mapping and work with the given iterator as
-            // all values have already been mapped.
-            $iterator = $this->generator($iterator);
-            $mapped = true;
-        }
-
         $resultSet = $this->factory->create();
 
-        foreach ($iterator as $item) {
-            $this->tick($resultSet, $item, $mapped);
-        }
+        $iterator = new MapperIterator($this->mapper, $iterator);
 
+        foreach ($iterator as $item) {
+            $this->tick($resultSet, $item);
+        }
 
         return $resultSet;
     }
@@ -86,14 +78,9 @@ class MapReduce implements Mapper, Reducer
      *
      * @param ResultSet $resultSet
      * @param mixed     $item
-     * @param boolean   $mapped
      */
-    protected function tick(ResultSet $resultSet, $item, $mapped = true)
+    protected function tick(ResultSet $resultSet, $item)
     {
-        if (false == $mapped) {
-            $item = $this->map($item);
-        }
-
         if ($item === null) {
             return;
         }
@@ -105,12 +92,5 @@ class MapReduce implements Mapper, Reducer
         }
 
         $resultSet->set($key, $value);
-    }
-
-    protected function generator(Traversable $iterator)
-    {
-        foreach ($iterator as $item) {
-            yield $this->map($item);
-        }
     }
 }

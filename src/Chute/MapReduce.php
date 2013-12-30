@@ -37,7 +37,7 @@ class MapReduce implements Mapper, Reducer
     }
 
     /**
-     * @param  Traversable    $iterator
+     * @param  Traversable $iterator
      * @return ResultSet
      */
     public function run(Traversable $iterator, ResultSetFactory $factory = null)

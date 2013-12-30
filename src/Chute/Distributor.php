@@ -13,7 +13,7 @@ use Traversable;
 interface Distributor
 {
     /**
-     * @param  MapReduce $mapReduce
+     * @param  MapReduce   $mapReduce
      * @param  Traversable $iterator
      * @return ResultSet
      */

@@ -38,7 +38,7 @@ interface ResultSet extends \Countable
     public function all();
 
     /**
-     * @param Reducer $reducer
+     * @param Reducer   $reducer
      * @param ResultSet $resultSet
      */
     public function merge(Reducer $reducer, ResultSet $resultSet);

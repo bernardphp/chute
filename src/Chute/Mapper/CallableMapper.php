@@ -24,6 +24,12 @@ class CallableMapper implements \Chute\Mapper
      */
     public function map($item)
     {
-        return call_user_func($this->callable, $item);
+        if (PHP_VERSION_ID < 5400 && is_array($this->callable)) {
+            return call_user_func($this->callable, $item);
+        }
+
+        $callable = $this->callable;
+
+        return $callable($item);
     }
 }

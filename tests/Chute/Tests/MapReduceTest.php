@@ -44,9 +44,9 @@ class MapReduceTest extends \PHPUnit_Framework_TestCase
         $factory = $this->getMock('Chute\ResultSetFactory');
         $factory->expects($this->once())->method('create')->will($this->returnValue($resultSet));
 
-        $mapReduce = new MapReduce($this->mapper, $this->reducer, $factory);
+        $mapReduce = new MapReduce($this->mapper, $this->reducer);
 
-        $this->assertSame($resultSet, $mapReduce->run(new ArrayIterator(array())));
+        $this->assertSame($resultSet, $mapReduce->run(new ArrayIterator(array()), $factory));
     }
 
     public function testMapToNullIgnoresValues()

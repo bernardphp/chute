@@ -2,8 +2,9 @@
 
 namespace Chute\Distributor;
 
-use Chute\ResultSet;
 use Chute\MapReduce;
+use Chute\ResultSetFactory;
+use Chute\ResultSet\ArrayFactory;
 use Traversable;
 
 /**
@@ -14,6 +15,17 @@ use Traversable;
  */
 abstract class AbstractDistributor implements \Chute\Distributor
 {
+    protected $factory;
+
+    public function __construct(ResultSetFactory $factory = null)
+    {
+        if (null === $factory) {
+            $factory = new ArrayFactory;
+        }
+
+        $this->factory = $factory;
+    }
+
     /**
      * Will call $mapReduce::run($iterator) for each of the chunks.
      *
@@ -24,7 +36,7 @@ abstract class AbstractDistributor implements \Chute\Distributor
      */
     protected function doRun(MapReduce $mapReduce, Traversable $iterator)
     {
-        return $mapReduce->run($iterator);
+        return $mapReduce->run($iterator, $this->factory);
     }
 
     /**

@@ -16,6 +16,19 @@ class SequentialDistributorTest extends \PHPUnit_Framework_TestCase
         $this->runner = new SequentialDistributor();
     }
 
+    public function testItUsesResultSetFactory()
+    {
+        $resultSet = $this->getMock('Chute\ResultSet');
+
+        $factory = $this->getMock('Chute\ResultSetFactory');
+        $factory->expects($this->exactly(2))->method('create')->will($this->returnValue($resultSet));
+
+        $iterator = new ChunkedIterator(new ArrayIterator(range(1, 4)), 2);
+        $distributor = new SequentialDistributor($factory);
+
+        $distributor->run($this->mapReduce, $iterator);
+    }
+
     public function testRun()
     {
         $iterator = new ArrayIterator(range(1, 4));

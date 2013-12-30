@@ -25,26 +25,28 @@ class MapReduce implements Mapper, Reducer
 {
     protected $mapper;
     protected $reducer;
-    protected $factory;
 
     /**
      * @param Mapper  $mapper
      * @param Reducer $reducer
      */
-    public function __construct(Mapper $mapper, Reducer $reducer, ResultSetFactory $factory = null)
+    public function __construct(Mapper $mapper, Reducer $reducer)
     {
         $this->mapper = $mapper;
         $this->reducer = $reducer;
-        $this->factory = $factory ?: new ArrayFactory;
     }
 
     /**
      * @param  Traversable    $iterator
      * @return ResultSet
      */
-    public function run(Traversable $iterator)
+    public function run(Traversable $iterator, ResultSetFactory $factory = null)
     {
-        $resultSet = $this->factory->create();
+        if (null === $factory) {
+            $factory = new ArrayFactory;
+        }
+
+        $resultSet = $factory->create();
 
         $iterator = new MapperIterator($this->mapper, $iterator);
 

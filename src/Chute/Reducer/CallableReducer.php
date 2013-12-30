@@ -24,7 +24,7 @@ class CallableReducer implements \Chute\Reducer
      */
     public function reduce($item, $previous)
     {
-        if (PHP_VERSION_ID < 5400) {
+        if (PHP_VERSION_ID < 50400) {
             return call_user_func($this->callable, $item, $previous);
         }
 

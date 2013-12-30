@@ -19,4 +19,11 @@ class CallableMapperTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(20, $mapper->map(10));
     }
+
+    public function testObjectMethod()
+    {
+        $mapper = new CallableMapper(array('Chute\Tests\Fixtures\EchoReturner', 'map'));
+
+        $this->assertEquals(array('echo', 10), $mapper->map(10));
+    }
 }

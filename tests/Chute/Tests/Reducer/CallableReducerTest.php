@@ -19,4 +19,11 @@ class CallableReducerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(30, $reducer->reduce(10, 20));
     }
+
+    public function testObjectMethod()
+    {
+        $reducer = new CallableReducer(array('Chute\Tests\Fixtures\EchoReturner', 'reduce'));
+
+        $this->assertEquals('echo', $reducer->reduce(10, 20));
+    }
 }

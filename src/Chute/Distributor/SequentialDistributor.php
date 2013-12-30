@@ -18,20 +18,14 @@ class SequentialDistributor extends AbstractDistributor
      */
     public function run(MapReduce $mapReduce, Traversable $iterator)
     {
-        $resultSet = null;
+        $resultSets = array();
 
         foreach ($iterator as $batch) {
-            $current = $this->doRun($mapReduce, $batch);
-
-            if ($resultSet) {
-                $resultSet->merge($mapReduce, $current);
-            } else {
-                $resultSet = $current;
-            }
+            $resultSets[] = $this->doRun($mapReduce, $batch);
         }
 
-        if ($resultSet) {
-            return $resultSet;
+        if ($resultSets) {
+            return $this->collapse($mapReduce, $resultSets);
         }
 
         return new ArraySet;

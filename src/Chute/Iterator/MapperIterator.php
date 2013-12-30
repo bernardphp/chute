@@ -1,6 +1,6 @@
 <?php
 
-namespace Chute\Util;
+namespace Chute\Iterator;
 
 use Chute\Mapper;
 use Traversable;

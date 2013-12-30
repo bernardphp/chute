@@ -2,7 +2,6 @@
 
 namespace Chute\ResultSet;
 
-use Chute\Util\Generator;
 use Redis;
 
 /**

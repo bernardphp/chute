@@ -3,7 +3,7 @@
 namespace Chute;
 
 use Chute\ResultSet\ArrayFactory;
-use Chute\Util\MapperIterator;
+use Chute\Iterator\MapperIterator;
 use Traversable;
 
 /**

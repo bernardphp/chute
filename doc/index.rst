@@ -79,7 +79,7 @@ Chute provides a Distributor to do this.
 
     <?php
 
-    use Chute\Util\ChunkedIterator;
+    use Chute\Iterator\ChunkedIterator;
     use Chute\Distributor\SequentialDistributor;
 
     // $mapReduce contains the same mapper and reducer as the simplistic example further above.

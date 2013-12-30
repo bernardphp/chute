@@ -1,8 +1,8 @@
 <?php
 
-namespace Chute\Tests\Util;
+namespace Chute\Tests\Iterator;
 
-use Chute\Util\ChunkedIterator;
+use Chute\Iterator\ChunkedIterator;
 use ArrayIterator;
 
 class ChunkedIteratorTest extends \PHPUnit_Framework_TestCase

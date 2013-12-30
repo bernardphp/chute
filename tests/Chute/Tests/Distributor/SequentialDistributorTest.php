@@ -5,7 +5,7 @@ namespace Chute\Tests\Distributor;
 use Chute\MapReduce;
 use Chute\Distributor\SequentialDistributor;
 use Chute\Tests\Fixtures;
-use Chute\Util\ChunkedIterator;
+use Chute\Iterator\ChunkedIterator;
 use ArrayIterator;
 
 class SequentialDistributorTest extends \PHPUnit_Framework_TestCase

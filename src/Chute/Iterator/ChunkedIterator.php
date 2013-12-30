@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-namespace Chute\Util;
+namespace Chute\Iterator;
 
 use ArrayIterator;
 use Traversable;

@@ -21,7 +21,7 @@ abstract class AbstractSet implements ResultSet
     {
         foreach ($resultSet->keys() as $key) {
             if ($this->has($key)) {
-                $this->set($key, $reducer->reduce($this->get($key), $resultSet->get($key)));
+                $this->set($key, $reducer->reduce($resultSet->get($key), $this->get($key)));
             } else {
                 $this->set($key, $resultSet->get($key));
             }

@@ -7,6 +7,8 @@ php:
     - hhvm
 
 before_script:
+    - "pyrus install pecl/redis && pyrus build pecl/redis"
+    - "echo \"extension=redis.so\" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini"
     - "composer install"
 
 script:

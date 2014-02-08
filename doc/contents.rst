@@ -3,6 +3,6 @@ Table of Contents
 
 .. toctree::
 
-    index
+    Getting Started <index>
     concepts
     faq

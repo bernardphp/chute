@@ -19,7 +19,7 @@ class RedisSet extends AbstractSet
     public function __construct(Redis $redis, $key = null)
     {
         $this->redis = $redis;
-        $this->key = chute_generate_uuid();
+        $this->key = $key ?: chute_generate_uuid();
     }
 
     /**

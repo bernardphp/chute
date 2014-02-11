@@ -17,6 +17,13 @@ class RedisSetTest extends \PHPUnit_Framework_TestCase
         $this->set = new RedisSet($this->redis);
     }
 
+    public function testUsesPredefinedKey()
+    {
+        $set = new RedisSet($this->redis, 'my-predefined-key');
+
+        $this->assertEquals('my-predefined-key', (string) $set);
+    }
+
     public function testKeyIsUuidV4()
     {
         $this->assertRegExp('/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/', (string) $this->set);

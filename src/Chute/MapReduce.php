@@ -36,6 +36,18 @@ class MapReduce implements Mapper, Reducer
         $this->reducer = $reducer;
     }
 
+
+    /**
+     * Static constructor in order for more fluid usage in <5.4
+     *
+     * @param Mapper $mapper
+     * @param Reducer $reducer
+     */
+    public static function create(Mapper $mapper, Reducer $reducer)
+    {
+        return new static($mapper, $reducer);
+    }
+
     /**
      * @param  Traversable $iterator
      * @return ResultSet

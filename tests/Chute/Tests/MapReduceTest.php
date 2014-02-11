@@ -22,6 +22,13 @@ class MapReduceTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Chute\Reducer', $mapReduce);
     }
 
+    public function testCreate()
+    {
+        $mapReduce = MapReduce::create($this->mapper, $this->reducer);
+
+        $this->assertInstanceOf('Chute\MapReduce', $mapReduce);
+    }
+
     public function testItMapReduces()
     {
         // It uses addition on all odd and even numbers.

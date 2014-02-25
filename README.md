@@ -7,4 +7,4 @@ Chute
 
 [![Build Status](https://travis-ci.org/bernardphp/chute.png?branch=master)](https://travis-ci.org/bernardphp/chute)
 
-Learn more about Chute in [its documentation](http://bernardphp.com/projects/chute).
+Learn more about Chute in [its documentation](http://bernardphp.com/docs/chute).

@@ -5,16 +5,12 @@
     "license"     : "MIT",
 
     "autoload" : {
-        "psr-0" : { "Chute\\" : "src" },
+        "psr-4" : { "Chute\\" : "src/Chute" },
         "files" : ["src/Chute/functions.php"]
     },
 
     "require" : {
         "php" : ">=5.3.3"
-    },
-
-    "require-dev" : {
-        "phpunit/phpunit" : "~3.7"
     },
 
     "extra" : {

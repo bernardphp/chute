@@ -59,16 +59,9 @@ class MapReduce implements Mapper, Reducer
         }
 
         $resultSet = $factory->create();
+        $iterator  = new MapperIterator($this->mapper, $iterator);
 
-        $iterator = new MapperIterator($this->mapper, $iterator);
-
-        foreach ($iterator as $item) {
-            if (null === $item) {
-                continue;
-            }
-
-            $this->tick($resultSet, $item);
-        }
+        iterator_apply($iterator, array($this, 'apply'), array($iterator, $resultSet));
 
         return $resultSet;
     }
@@ -90,21 +83,23 @@ class MapReduce implements Mapper, Reducer
     }
 
     /**
-     * Maps a single $item and if a previous item with the same key have
-     * been mapped those two will be reduced together to a single value.
-     * This value is then updated in the result set.
+     * Callbacl for iterator_apply
      *
+     * @param Traversable $terator
      * @param ResultSet $resultSet
-     * @param mixed     $item
      */
-    protected function tick(ResultSet $resultSet, $item)
+    private function apply(Traversable $iterator, ResultSet $resultSet)
     {
-        list($key, $value) = $item;
+        if ($item = $iterator->current()) {
+            list($key, $value) = $item;
 
-        if ($previous = $resultSet->get($key)) {
-            $value = $this->reducer->reduce($value, $previous);
+            if ($previous = $resultSet->get($key)) {
+                $value = $this->reducer->reduce($value, $previous);
+            }
+
+            $resultSet->set($key, $value);
         }
 
-        $resultSet->set($key, $value);
+        return true;
     }
 }

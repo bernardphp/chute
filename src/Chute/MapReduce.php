@@ -23,8 +23,8 @@ use Traversable;
  */
 class MapReduce implements Mapper, Reducer
 {
-    protected $mapper;
-    protected $reducer;
+    private $mapper;
+    private $reducer;
 
     /**
      * @param Mapper  $mapper

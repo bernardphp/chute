@@ -7,8 +7,7 @@ use Traversable;
 
 class MapperIterator extends \IteratorIterator
 {
-    protected $mapper;
-    protected $iterator;
+    private $mapper;
 
     public function __construct(Mapper $mapper, Traversable $iterator)
     {
